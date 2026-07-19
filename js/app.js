@@ -1,11 +1,10 @@
 (function () {
   const STORAGE_LANG_KEY = 'saem_lang';
   const STORAGE_THEME_KEY = 'saem_theme';
+  const GEO_CACHE_KEY = 'saem_geo_cache';
 
-  // Each language now lives on its own static, pre-rendered URL so Google can
-  // index and show the right snippet language per country (hreflang), instead
-  // of one URL whose text is swapped client-side after load.
   const LANG_URLS = { en: '/', tr: '/tr/', ar: '/ar/' };
+  const BOT_UA_REGEX = /bot|crawl|spider|slurp|mediapartners|facebookexternalhit|whatsapp|telegrambot|preview|lighthouse|pagespeed/i;
 
   const root = document.documentElement;
   const body = document.body;
@@ -16,6 +15,18 @@
   const iconBurger = document.getElementById('iconBurger');
   const iconClose = document.getElementById('iconClose');
   const geoLoader = document.getElementById('geoLoader');
+
+  function isBot() {
+    return BOT_UA_REGEX.test(navigator.userAgent || '');
+  }
+
+  function safeGet(key) {
+    try { return sessionStorage.getItem(key); } catch (e) { return null; }
+  }
+
+  function safeSet(key, value) {
+    try { sessionStorage.setItem(key, value); } catch (e) {  }
+  }
 
   function applyTheme(theme) {
     root.classList.toggle('dark', theme === 'dark');
@@ -45,16 +56,16 @@
     if (LANG_URLS[lang]) window.location.replace(LANG_URLS[lang]);
   }
 
-  // Geolocation-based redirect only runs on the default (English/root) page.
-  // A Turkish or Syrian visitor landing on "/" directly gets sent to their
-  // localized page; everyone else simply stays on the English page. Pages
-  // reached directly (e.g. from a Google result already showing /tr/ or
-  // /ar/) skip this entirely and just remember the visitor's language.
   function initLangRouting() {
     const pageLang = root.getAttribute('lang');
 
     if (pageLang !== 'en') {
       localStorage.setItem(STORAGE_LANG_KEY, pageLang);
+      return;
+    }
+
+    if (isBot()) {
+      hideGeoLoader();
       return;
     }
 
@@ -79,7 +90,10 @@
     fetchWithTimeout('https://ipwho.is/', 4000)
       .then(res => res.json())
       .then(data => {
-        const code = data && data.success !== false ? data.country_code : null;
+        const success = data && data.success !== false;
+        if (success) safeSet(GEO_CACHE_KEY, JSON.stringify(data));
+
+        const code = success ? data.country_code : null;
         const lang = countryToLang(code);
         localStorage.setItem(STORAGE_LANG_KEY, lang);
         if (lang !== 'en') { goToLang(lang); return; }

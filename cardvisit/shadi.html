@@ -160,11 +160,11 @@
 </style>
 </head>
 
-<body class="bg-paper dark:bg-navy text-[#0B1220] dark:text-[#E7EDFB] font-body transition-colors min-h-screen">
+<body class="bg-paper dark:bg-navy text-[#0B1220] dark:text-[#E7EDFB] font-body transition-colors min-h-screen opacity-0 [transition:opacity_.25s_ease]">
 
 <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-paper/80 dark:bg-navy/70 border-b border-paper-line dark:border-navy-line">
   <div class="max-w-6xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4">
-    <a href="https://saemsecurity.com" class="flex items-center gap-2 sm:gap-3 shrink-0 min-w-0">
+    <a href="https://saemsecurity.com" id="logoLink" class="flex items-center gap-2 sm:gap-3 shrink-0 min-w-0">
       <div class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center shrink-0">
         <img src="../logo.png" data-i18n-alt alt="SAEM Security Logo" class="w-full h-full object-contain">
       </div>
@@ -182,9 +182,9 @@
 
     <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
       <div class="flex items-center rounded-full border border-paper-line dark:border-navy-line p-0.5 text-[10px] sm:text-xs font-mono">
-        <button data-lang="ar" class="lang-btn px-1.5 sm:px-2.5 py-1 rounded-full transition-colors">AR</button>
-        <button data-lang="tr" class="lang-btn px-1.5 sm:px-2.5 py-1 rounded-full transition-colors">TR</button>
         <button data-lang="en" class="lang-btn px-1.5 sm:px-2.5 py-1 rounded-full transition-colors">EN</button>
+        <button data-lang="tr" class="lang-btn px-1.5 sm:px-2.5 py-1 rounded-full transition-colors">TR</button>
+        <button data-lang="ar" class="lang-btn px-1.5 sm:px-2.5 py-1 rounded-full transition-colors">AR</button>
       </div>
 
       <button id="themeToggle" data-i18n-aria aria-label="Toggle dark / light mode"
@@ -293,11 +293,73 @@
     dirMap: { ar: 'rtl', tr: 'ltr', en: 'ltr' },
     langMap: { ar: 'ar', tr: 'tr', en: 'en' },
     nav: {
-      ar: { home: 'الرئيسية', about: 'من نحن', services: 'الخدمات', locations: 'المواقع', contact: 'اتصل بنا', privacy: 'الخصوصية' },
-      tr: { home: 'Anasayfa', about: 'Hakkımızda', services: 'Hizmetler', locations: 'Konumlar', contact: 'İletişim', privacy: 'Gizlilik' },
+      ar: { home: 'الرئيسية', about: 'من نحن', services: 'خدماتنا', locations: 'مواقعنا', contact: 'تواصل معنا', privacy: 'الخصوصية' },
+      tr: { home: 'Ana Sayfa', about: 'Hakkımızda', services: 'Hizmetler', locations: 'Konumlarımız', contact: 'İletişim', privacy: 'Gizlilik' },
       en: { home: 'Home', about: 'About', services: 'Services', locations: 'Locations', contact: 'Contact', privacy: 'Privacy' }
     }
   };
+
+  // Base URL of each language subsite. The homepage lives at the domain
+  // root, TR/AR live under /tr/ and /ar/. Nav links must point into the
+  // matching subsite, not always back to the English root.
+  const SITE_BASE = { en: 'https://saemsecurity.com', tr: 'https://saemsecurity.com/tr', ar: 'https://saemsecurity.com/ar' };
+  const NAV_PATH = { home: '/#hero', about: '/#about', services: '/#services', locations: '/#locations', contact: '/#contact', privacy: '/privacy.html' };
+
+  const GEO_CACHE_KEY = 'saem_geo_cache';
+  const BOT_UA_REGEX = /bot|crawl|spider|slurp|mediapartners|facebookexternalhit|whatsapp|telegrambot|preview|lighthouse|pagespeed/i;
+
+  function isBot() {
+    return BOT_UA_REGEX.test(navigator.userAgent || '');
+  }
+
+  function safeSessionGet(key) {
+    try { return sessionStorage.getItem(key); } catch (e) { return null; }
+  }
+
+  function safeSessionSet(key, value) {
+    try { sessionStorage.setItem(key, value); } catch (e) {  }
+  }
+
+  function countryToLang(code) {
+    if (code === 'SY') return 'ar';
+    if (code === 'TR') return 'tr';
+    return 'en';
+  }
+
+  function fetchWithTimeout(url, ms) {
+    return Promise.race([
+      fetch(url),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), ms))
+    ]);
+  }
+
+  // Resolves the language to render on first load, mirroring the homepage's
+  // own logic: an explicit stored preference always wins; otherwise the
+  // visitor's country decides (Syria -> ar, Turkey -> tr, else -> en).
+  // Defaults to English if geolocation fails or times out.
+  function resolveInitialLanguage() {
+    const stored = localStorage.getItem(STORAGE_LANG_KEY);
+    if (stored && STATIC.field[stored]) return Promise.resolve(stored);
+
+    if (isBot()) return Promise.resolve('en');
+
+    const cached = safeSessionGet(GEO_CACHE_KEY);
+    if (cached) {
+      try {
+        const data = JSON.parse(cached);
+        return Promise.resolve(countryToLang(data.country_code));
+      } catch (e) {  }
+    }
+
+    return fetchWithTimeout('https://ipwho.is/', 4000)
+      .then((res) => res.json())
+      .then((data) => {
+        const success = data && data.success !== false;
+        if (success) safeSessionSet(GEO_CACHE_KEY, JSON.stringify(data));
+        return countryToLang(success ? data.country_code : null);
+      })
+      .catch(() => 'en');
+  }
 
   const params = new URLSearchParams(window.location.search);
   const filenameId = window.location.pathname.split('/').pop().replace(/\.html?$/i, '');
@@ -312,6 +374,7 @@
       '<div style="padding:2rem;text-align:center;font-family:sans-serif">' +
       NOT_FOUND[notFoundLang] + '<b>' + (memberId || '') + '</b>' +
       '</div>';
+    document.body.classList.remove('opacity-0');
     return;
   }
 
@@ -357,9 +420,14 @@
     roleLabelEl.textContent = member.role[lang];
     footerRightsEl.textContent = STATIC.footer[lang];
     const navLabels = STATIC.nav[lang];
+    const base = SITE_BASE[lang];
     document.querySelectorAll('[data-nav]').forEach((el) => {
-      el.textContent = navLabels[el.getAttribute('data-nav')];
+      const key = el.getAttribute('data-nav');
+      el.textContent = navLabels[key];
+      el.href = base + NAV_PATH[key];
     });
+    const logoLinkEl = document.getElementById('logoLink');
+    if (logoLinkEl) logoLinkEl.href = lang === 'en' ? base : base + '/';
     document.querySelectorAll('[data-i18n-alt]').forEach((el) => el.setAttribute('alt', field.logoAlt));
     document.querySelectorAll('[data-i18n-aria]').forEach((el) => el.setAttribute('aria-label', field.themeToggle));
     whatsappLabel.textContent = field.whatsapp;
@@ -383,6 +451,8 @@
       btn.classList.toggle('text-white', isActive);
       btn.classList.toggle('text-[#5B667E]', !isActive);
       btn.classList.toggle('dark:text-[#7C8AB0]', !isActive);
+      if (isActive) btn.setAttribute('aria-current', 'page');
+      else btn.removeAttribute('aria-current');
     });
   }
 
@@ -401,7 +471,11 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     applyTheme(localStorage.getItem(STORAGE_THEME_KEY) || 'dark');
-    applyLanguage(localStorage.getItem(STORAGE_LANG_KEY) || 'ar');
+
+    resolveInitialLanguage().then((lang) => {
+      applyLanguage(lang);
+      body.classList.remove('opacity-0');
+    });
 
     langButtons.forEach((btn) => {
       btn.addEventListener('click', () => applyLanguage(btn.getAttribute('data-lang')));

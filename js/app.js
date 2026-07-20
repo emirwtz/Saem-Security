@@ -59,8 +59,15 @@
   function initLangRouting() {
     const pageLang = root.getAttribute('lang');
 
-    if (pageLang !== 'en') {
+    // Only the real entry point ("/") should ever auto-redirect by
+    // geolocation. Any other English page (e.g. /privacy.html) must render
+    // itself, never bounce the visitor to a different page just because
+    // their country maps to tr/ar.
+    const isEntryPoint = window.location.pathname === '/';
+
+    if (pageLang !== 'en' || !isEntryPoint) {
       localStorage.setItem(STORAGE_LANG_KEY, pageLang);
+      hideGeoLoader();
       return;
     }
 
@@ -146,6 +153,9 @@
     const savedTheme = localStorage.getItem(STORAGE_THEME_KEY) || 'dark';
     applyTheme(savedTheme);
     initLangRouting();
+
+    const copyYearEl = document.getElementById('copyYear');
+    if (copyYearEl) copyYearEl.textContent = new Date().getFullYear();
 
     langLinks.forEach(link => {
       link.addEventListener('click', () => {

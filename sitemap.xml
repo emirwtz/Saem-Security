@@ -1,51 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
   <url>
     <loc>https://www.saemsecurity.com/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.saemsecurity.com/"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.saemsecurity.com/tr/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.saemsecurity.com/ar/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.saemsecurity.com/"/>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
   <url>
     <loc>https://www.saemsecurity.com/tr/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.saemsecurity.com/"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.saemsecurity.com/tr/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.saemsecurity.com/ar/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.saemsecurity.com/"/>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
   <url>
     <loc>https://www.saemsecurity.com/ar/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.saemsecurity.com/"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.saemsecurity.com/tr/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.saemsecurity.com/ar/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.saemsecurity.com/"/>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
   <url>
-    <loc>https://www.saemsecurity.com/cardvisit/emir.html</loc>
+    <loc>https://www.saemsecurity.com/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.saemsecurity.com/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.saemsecurity.com/tr/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.saemsecurity.com/ar/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.saemsecurity.com/privacy.html"/>
     <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.3</priority>
   </url>
+
   <url>
-    <loc>https://www.saemsecurity.com/cardvisit/bunyamin.html</loc>
+    <loc>https://www.saemsecurity.com/tr/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.saemsecurity.com/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.saemsecurity.com/tr/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.saemsecurity.com/ar/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.saemsecurity.com/privacy.html"/>
     <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.3</priority>
   </url>
+
   <url>
-    <loc>https://www.saemsecurity.com/cardvisit/mohammad.html</loc>
+    <loc>https://www.saemsecurity.com/ar/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.saemsecurity.com/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.saemsecurity.com/tr/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.saemsecurity.com/ar/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.saemsecurity.com/privacy.html"/>
     <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.3</priority>
   </url>
-  <url>
-    <loc>https://www.saemsecurity.com/cardvisit/shadi.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
+
 </urlset>

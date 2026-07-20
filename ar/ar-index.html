@@ -125,6 +125,8 @@
 
 <body class="bg-paper dark:bg-navy text-[#0B1220] dark:text-[#E7EDFB] font-body font-bodyAr transition-colors">
 
+<a href="#main-content" class="skip-link">تخطي إلى المحتوى</a>
+
 <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-paper/80 dark:bg-navy/70 border-b border-paper-line dark:border-navy-line">
   <div class="max-w-6xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4">
     <a href="#hero" class="flex items-center gap-2 sm:gap-3 shrink-0 min-w-0">
@@ -140,6 +142,7 @@
       <a href="#services" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">خدماتنا</a>
       <a href="#locations" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">مواقعنا</a>
       <a href="#contact" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">تواصل معنا</a>
+      <a href="/ar/privacy.html" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">الخصوصية</a>
     </nav>
 
     <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
@@ -169,12 +172,13 @@
       <a href="#about" data-mobile-link class="py-3 border-b border-paper-line dark:border-navy-line hover:text-brand-500 dark:hover:text-accent-400 transition-colors">من نحن</a>
       <a href="#services" data-mobile-link class="py-3 border-b border-paper-line dark:border-navy-line hover:text-brand-500 dark:hover:text-accent-400 transition-colors">خدماتنا</a>
       <a href="#locations" data-mobile-link class="py-3 border-b border-paper-line dark:border-navy-line hover:text-brand-500 dark:hover:text-accent-400 transition-colors">مواقعنا</a>
-      <a href="#contact" data-mobile-link class="py-3 hover:text-brand-500 dark:hover:text-accent-400 transition-colors">تواصل معنا</a>
+      <a href="#contact" data-mobile-link class="py-3 border-b border-paper-line dark:border-navy-line hover:text-brand-500 dark:hover:text-accent-400 transition-colors">تواصل معنا</a>
+      <a href="/ar/privacy.html" class="py-3 hover:text-brand-500 dark:hover:text-accent-400 transition-colors">الخصوصية</a>
     </div>
   </nav>
 </header>
 
-<main>
+<main id="main-content">
 <section id="hero" class="relative pt-32 pb-24 px-5 sm:px-8 overflow-hidden">
   <div class="absolute inset-0 -z-10 opacity-40 dark:opacity-60"
        style="background:radial-gradient(60% 50% at 50% 0%, rgba(108,92,231,0.18), transparent 70%)"></div>
@@ -352,7 +356,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
       <a href="../cardvisit/shadi.html" target="_blank" rel="noopener"
         class="group flex items-center gap-3.5 p-3.5 rounded-xl border border-paper-line dark:border-navy-line bg-paper-panel dark:bg-navy-panel hover:border-brand-500 dark:hover:border-accent-400 hover:shadow-glow transition-all">
-        <img src="../cardvisit/img/shadi.jpeg" alt="Shadi Karkotli" class="w-12 h-12 rounded-full object-cover ring-2 ring-paper-line dark:ring-navy-line group-hover:ring-brand-500 dark:group-hover:ring-accent-400 transition-all shrink-0">
+        <img src="../cardvisit/img/shadi.jpeg" alt="Shadi Karkotli" loading="lazy" class="w-12 h-12 rounded-full object-cover ring-2 ring-paper-line dark:ring-navy-line group-hover:ring-brand-500 dark:group-hover:ring-accent-400 transition-all shrink-0">
         <div class="min-w-0 flex-1">
           <p class="text-sm font-semibold font-display truncate">Shadi Karkotli</p>
           <p class="text-xs text-[#5B667E] dark:text-[#7C8AB0] truncate">مؤسس الشركة</p>
@@ -361,7 +365,7 @@
       </a>
       <a href="../cardvisit/emir.html" target="_blank" rel="noopener"
         class="group flex items-center gap-3.5 p-3.5 rounded-xl border border-paper-line dark:border-navy-line bg-paper-panel dark:bg-navy-panel hover:border-brand-500 dark:hover:border-accent-400 hover:shadow-glow transition-all">
-        <img src="../cardvisit/img/emir.jpg" alt="Mehmet Emir Eroğlu" class="w-12 h-12 rounded-full object-cover ring-2 ring-paper-line dark:ring-navy-line group-hover:ring-brand-500 dark:group-hover:ring-accent-400 transition-all shrink-0">
+        <img src="../cardvisit/img/emir.jpg" alt="Mehmet Emir Eroğlu" loading="lazy" class="w-12 h-12 rounded-full object-cover ring-2 ring-paper-line dark:ring-navy-line group-hover:ring-brand-500 dark:group-hover:ring-accent-400 transition-all shrink-0">
         <div class="min-w-0 flex-1">
           <p class="text-sm font-semibold font-display truncate">Mehmet Emir Eroğlu</p>
           <p class="text-xs text-[#5B667E] dark:text-[#7C8AB0] truncate">مؤسس الشركة</p>
@@ -370,7 +374,7 @@
       </a>
       <a href="../cardvisit/mohammad.html" target="_blank" rel="noopener"
         class="group flex items-center gap-3.5 p-3.5 rounded-xl border border-paper-line dark:border-navy-line bg-paper-panel dark:bg-navy-panel hover:border-brand-500 dark:hover:border-accent-400 hover:shadow-glow transition-all">
-        <img src="../cardvisit/img/mohammad.jpeg" alt="Mohammad Sharaf" class="w-12 h-12 rounded-full object-cover ring-2 ring-paper-line dark:ring-navy-line group-hover:ring-brand-500 dark:group-hover:ring-accent-400 transition-all shrink-0">
+        <img src="../cardvisit/img/mohammad.jpeg" alt="Mohammad Sharaf" loading="lazy" class="w-12 h-12 rounded-full object-cover ring-2 ring-paper-line dark:ring-navy-line group-hover:ring-brand-500 dark:group-hover:ring-accent-400 transition-all shrink-0">
         <div class="min-w-0 flex-1">
           <p class="text-sm font-semibold font-display truncate">Mohammad Sharaf</p>
           <p class="text-xs text-[#5B667E] dark:text-[#7C8AB0] truncate">مؤسس الشركة</p>
@@ -382,7 +386,7 @@
 
   <div class="border-t border-paper-line dark:border-navy-line py-6 px-5 sm:px-8">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#5B667E] dark:text-[#7C8AB0]">
-      <span>© 2026 SAEM Security. جميع الحقوق محفوظة.</span>
+      <span>© <span id="copyYear">2026</span> SAEM Security. جميع الحقوق محفوظة.</span>
       <span>أنظمة آمنة مع SAEM Security</span>
     </div>
   </div>

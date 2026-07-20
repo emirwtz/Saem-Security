@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
-<link rel="icon" type="image/png" href="logo.png">
+<link rel="icon" type="image/png" href="../logo.png">
 <title>SAEM Security</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -141,6 +141,16 @@
     outline-offset: 2px;
   }
 
+  #mobileNav {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease;
+  }
+
+  #mobileNav.open {
+    max-height: 420px;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .card-radar-ring.r3,
     .terminal-caret::after {
@@ -153,27 +163,54 @@
 <body class="bg-paper dark:bg-navy text-[#0B1220] dark:text-[#E7EDFB] font-body transition-colors min-h-screen">
 
 <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-paper/80 dark:bg-navy/70 border-b border-paper-line dark:border-navy-line">
-  <div class="max-w-md mx-auto px-5 h-16 flex items-center justify-between gap-4">
-    <a href="https://saemsecurity.com" class="flex items-center gap-2.5 shrink-0">
-      <div class="w-8 h-8 flex items-center justify-center shrink-0">
-        <img src="logo.png" data-i18n-alt alt="SAEM Security Logo" class="w-full h-full object-contain">
+  <div class="max-w-6xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4">
+    <a href="https://saemsecurity.com" class="flex items-center gap-2 sm:gap-3 shrink-0 min-w-0">
+      <div class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center shrink-0">
+        <img src="../logo.png" data-i18n-alt alt="SAEM Security Logo" class="w-full h-full object-contain">
       </div>
-      <span class="font-display font-semibold tracking-tight text-sm">SAEM <span class="text-brand-500 dark:text-accent-400">Security</span></span>
+      <span class="font-display font-semibold tracking-tight text-base sm:text-lg whitespace-nowrap">SAEM <span class="text-brand-500 dark:text-accent-400">Security</span></span>
     </a>
 
-    <div class="flex items-center gap-2 shrink-0">
-      <div class="flex items-center rounded-full border border-paper-line dark:border-navy-line p-0.5 text-xs font-mono">
-        <button data-lang="ar" class="lang-btn px-2.5 py-1 rounded-full transition-colors">AR</button>
-        <button data-lang="tr" class="lang-btn px-2.5 py-1 rounded-full transition-colors">TR</button>
-        <button data-lang="en" class="lang-btn px-2.5 py-1 rounded-full transition-colors">EN</button>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
+      <a href="https://saemsecurity.com/#hero" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Home</a>
+      <a href="https://saemsecurity.com/#about" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">About</a>
+      <a href="https://saemsecurity.com/#services" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Services</a>
+      <a href="https://saemsecurity.com/#locations" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Locations</a>
+      <a href="https://saemsecurity.com/#contact" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Contact</a>
+      <a href="https://saemsecurity.com/privacy.html" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Privacy</a>
+    </nav>
+
+    <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+      <div class="flex items-center rounded-full border border-paper-line dark:border-navy-line p-0.5 text-[10px] sm:text-xs font-mono">
+        <button data-lang="ar" class="lang-btn px-1.5 sm:px-2.5 py-1 rounded-full transition-colors">AR</button>
+        <button data-lang="tr" class="lang-btn px-1.5 sm:px-2.5 py-1 rounded-full transition-colors">TR</button>
+        <button data-lang="en" class="lang-btn px-1.5 sm:px-2.5 py-1 rounded-full transition-colors">EN</button>
       </div>
+
       <button id="themeToggle" data-i18n-aria aria-label="Toggle dark / light mode"
-        class="w-9 h-9 rounded-full border border-paper-line dark:border-navy-line flex items-center justify-center hover:border-brand-500 dark:hover:border-accent-400 transition-colors">
+        class="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-paper-line dark:border-navy-line flex items-center justify-center hover:border-brand-500 dark:hover:border-accent-400 transition-colors shrink-0">
         <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
         <svg class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
       </button>
+
+      <button id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav"
+        class="md:hidden w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-paper-line dark:border-navy-line flex items-center justify-center hover:border-brand-500 dark:hover:border-accent-400 transition-colors shrink-0">
+        <svg id="iconBurger" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg id="iconClose" class="w-4 h-4 hidden" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
     </div>
   </div>
+
+  <nav id="mobileNav" class="md:hidden border-t border-paper-line dark:border-navy-line bg-paper/95 dark:bg-navy/95 backdrop-blur-md">
+    <div class="px-5 sm:px-8 py-2 flex flex-col text-sm font-medium">
+      <a href="https://saemsecurity.com/#hero" data-mobile-link class="py-3 border-b border-paper-line dark:border-navy-line hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Home</a>
+      <a href="https://saemsecurity.com/#about" data-mobile-link class="py-3 border-b border-paper-line dark:border-navy-line hover:text-brand-500 dark:hover:text-accent-400 transition-colors">About</a>
+      <a href="https://saemsecurity.com/#services" data-mobile-link class="py-3 border-b border-paper-line dark:border-navy-line hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Services</a>
+      <a href="https://saemsecurity.com/#locations" data-mobile-link class="py-3 border-b border-paper-line dark:border-navy-line hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Locations</a>
+      <a href="https://saemsecurity.com/#contact" data-mobile-link class="py-3 border-b border-paper-line dark:border-navy-line hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Contact</a>
+      <a href="https://saemsecurity.com/privacy.html" class="py-3 hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Privacy</a>
+    </div>
+  </nav>
 </header>
 
 <main class="max-w-md mx-auto px-5 pt-28 pb-14">
@@ -291,6 +328,11 @@
   const phoneBtn = document.getElementById('phoneBtn');
   const phoneLabel = document.getElementById('phoneLabel');
 
+  const menuToggleBtn = document.getElementById('menuToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  const iconBurger = document.getElementById('iconBurger');
+  const iconClose = document.getElementById('iconClose');
+
   avatarImg.src = member.avatar;
   avatarImg.alt = member.name;
   nameLabelEl.textContent = member.name;
@@ -340,6 +382,14 @@
     localStorage.setItem(STORAGE_THEME_KEY, theme);
   }
 
+  function closeMobileNav() {
+    if(!mobileNav) return;
+    mobileNav.classList.remove('open');
+    menuToggleBtn.setAttribute('aria-expanded', 'false');
+    if(iconBurger) iconBurger.classList.remove('hidden');
+    if(iconClose) iconClose.classList.add('hidden');
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     applyTheme(localStorage.getItem(STORAGE_THEME_KEY) || 'dark');
     applyLanguage(localStorage.getItem(STORAGE_LANG_KEY) || 'ar');
@@ -350,6 +400,25 @@
 
     themeToggleBtn.addEventListener('click', () => {
       applyTheme(root.classList.contains('dark') ? 'light' : 'dark');
+    });
+
+    if(menuToggleBtn) {
+      menuToggleBtn.addEventListener('click', () => {
+        const isOpen = mobileNav.classList.toggle('open');
+        menuToggleBtn.setAttribute('aria-expanded', String(isOpen));
+        if(iconBurger) iconBurger.classList.toggle('hidden', isOpen);
+        if(iconClose) iconClose.classList.toggle('hidden', !isOpen);
+      });
+    }
+
+    if(mobileNav) {
+      mobileNav.querySelectorAll('[data-mobile-link]').forEach(link => {
+        link.addEventListener('click', closeMobileNav);
+      });
+    }
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) closeMobileNav();
     });
   });
 })();

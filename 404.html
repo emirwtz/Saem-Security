@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="any" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<title>404 - Page Not Found | SAEM Security</title>
+<meta name="robots" content="noindex, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="js/tailwind-config.js"></script>
+</head>
+
+<body class="bg-paper dark:bg-navy text-[#0B1220] dark:text-[#E7EDFB] font-body transition-colors min-h-screen flex flex-col justify-between">
+
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-paper/80 dark:bg-navy/70 border-b border-paper-line dark:border-navy-line">
+  <div class="max-w-6xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4">
+    <a href="/" class="flex items-center gap-2 sm:gap-3 shrink-0 min-w-0">
+      <div class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center shrink-0">
+        <img src="logo.png" alt="SAEM Security Logo" class="w-full h-full object-contain">
+      </div>
+      <span class="font-display font-semibold tracking-tight text-base sm:text-lg whitespace-nowrap">SAEM <span class="text-brand-500 dark:text-accent-400">Security</span></span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
+      <a href="/#hero" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Home</a>
+      <a href="/#about" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">About</a>
+      <a href="/#services" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Services</a>
+      <a href="/#locations" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Locations</a>
+      <a href="/#contact" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Contact</a>
+      <a href="/privacy.html" class="hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Privacy</a>
+    </nav>
+
+    <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+      <div class="flex items-center rounded-full border border-paper-line dark:border-navy-line p-0.5 text-[10px] sm:text-xs font-mono">
+          <a href="/" data-lang="en" class="lang-btn px-1.5 sm:px-2.5 py-1 rounded-full transition-colors bg-brand-500 text-white">EN</a>
+          <a href="/tr/" data-lang="tr" class="lang-btn px-1.5 sm:px-2.5 py-1 rounded-full transition-colors text-[#5B667E] dark:text-[#7C8AB0]">TR</a>
+          <a href="/ar/" data-lang="ar" class="lang-btn px-1.5 sm:px-2.5 py-1 rounded-full transition-colors text-[#5B667E] dark:text-[#7C8AB0]">AR</a>
+      </div>
+
+      <button id="themeToggle" aria-label="Toggle dark / light mode"
+        class="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-paper-line dark:border-navy-line flex items-center justify-center hover:border-brand-500 dark:hover:border-accent-400 transition-colors shrink-0">
+        <svg id="iconMoon" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <svg id="iconSun" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+
+      <button id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav"
+        class="md:hidden w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-paper-line dark:border-navy-line flex items-center justify-center hover:border-brand-500 dark:hover:border-accent-400 transition-colors shrink-0">
+        <svg id="iconBurger" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg id="iconClose" class="w-4 h-4 hidden" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <nav id="mobileNav" class="md:hidden border-t border-paper-line dark:border-navy-line bg-paper/95 dark:bg-navy/95 backdrop-blur-md">
+    <div class="px-5 sm:px-8 py-2 flex flex-col text-sm font-medium">
+      <a href="/#hero" data-mobile-link class="py-3 border-b border-paper-line dark:border-navy-line hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Home</a>
+      <a href="/#about" data-mobile-link class="py-3 border-b border-paper-line dark:border-navy-line hover:text-brand-500 dark:hover:text-accent-400 transition-colors">About</a>
+      <a href="/#services" data-mobile-link class="py-3 border-b border-paper-line dark:border-navy-line hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Services</a>
+      <a href="/#locations" data-mobile-link class="py-3 border-b border-paper-line dark:border-navy-line hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Locations</a>
+      <a href="/#contact" data-mobile-link class="py-3 border-b border-paper-line dark:border-navy-line hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Contact</a>
+      <a href="/privacy.html" class="py-3 hover:text-brand-500 dark:hover:text-accent-400 transition-colors">Privacy</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main-content" class="flex-grow flex items-center justify-center pt-24 px-5">
+  <div class="max-w-md w-full text-center reveal in">
+    <div class="radar w-full aspect-square max-w-[180px] mx-auto absolute inset-x-0 -z-10 opacity-20 dark:opacity-40">
+      <div class="sweep"><div class="sweep-blade"></div></div>
+    </div>
+    
+    <h1 class="font-display font-semibold text-7xl sm:text-8xl text-brand-500 dark:text-accent-400 tracking-tight">404</h1>
+    <h2 class="mt-4 font-display font-semibold text-2xl tracking-tight">Security Alert: Page Not Found</h2>
+    <p class="mt-4 text-sm text-[#3C4A6B] dark:text-[#9AA9CC] leading-relaxed">The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+    
+    <div class="mt-8 rounded-xl border border-paper-line dark:border-paper-line/10 bg-paper-panel dark:bg-navy-panel/80 p-4 font-mono text-xs text-start text-[#5B667E] dark:text-[#7C8AB0]" dir="ltr">
+      <div>$ <span class="text-red-400">Error: HTTP_404_NOT_FOUND</span></div>
+      <div>$ <span class="text-[#0B1220] dark:text-[#E7EDFB]">Recommendation: Return to safety</span><span class="terminal-caret"></span></div>
+    </div>
+
+    <div class="mt-8">
+      <a href="/" class="inline-block px-6 py-3 rounded-lg bg-brand-500 text-white font-medium text-sm shadow-glow hover:bg-brand-400 transition-colors">Back to Home Base</a>
+    </div>
+  </div>
+</main>
+
+<footer class="border-t border-paper-line dark:border-navy-line py-6 px-5 sm:px-8 shrink-0">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#5B667E] dark:text-[#7C8AB0]">
+    <span>© <span id="copyYear">2026</span> SAEM Security. All rights reserved.</span>
+    <span>Secure systems with SAEM Security</span>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const root = document.documentElement;
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const menuToggleBtn = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    const applyTheme = (theme) => {
+      root.classList.toggle('dark', theme === 'dark');
+      localStorage.setItem('saem_theme', theme);
+    };
+    applyTheme(localStorage.getItem('saem_theme') || 'dark');
+    themeToggleBtn.addEventListener('click', () => applyTheme(root.classList.contains('dark') ? 'light' : 'dark'));
+
+    menuToggleBtn.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      menuToggleBtn.setAttribute('aria-expanded', String(isOpen));
+      document.getElementById('iconBurger').classList.toggle('hidden', isOpen);
+      document.getElementById('iconClose').classList.toggle('hidden', !isOpen);
+    });
+    
+    document.getElementById('copyYear').textContent = new Date().getFullYear();
+  });
+</script>
+</body>
+</html>
